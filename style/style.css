@@ -1,0 +1,83 @@
+body {
+  font-family: "Roboto", "Arial", sans-serif;
+  color: #011;
+  overflow-x: hidden !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Cinzel", "Times New Roman", serif;
+}
+
+#map {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: -100;
+}
+
+.map__ui {
+  background-color: #feffe4;
+}
+
+.splash__container {
+  min-width: 300px;
+  width: 1280px;
+  max-width: 90vw;
+  max-height: 90vh;
+  margin: auto;
+}
+.splash__container input[type=text] {
+  width: 60%;
+}
+
+.recent__images__container {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+}
+.recent__images__container .top {
+  top: 0px;
+}
+.recent__images__container .bottom {
+  bottom: 0px;
+}
+
+.recent__images__img {
+  float: left;
+}
+
+.bg__special--1 {
+  background-color: #8a318c;
+}
+
+.filter__special--1 {
+  background-color: #8a318c;
+}
+
+.bg__special--2 {
+  background-color: #75ab79;
+}
+
+.filter__special--2 {
+  background-color: #75ab79;
+}
+
+.bg__special--3 {
+  background-color: #4d938e;
+}
+
+.filter__special--3 {
+  background-color: #4d938e;
+}
+
+.bg__special--4 {
+  background-color: #d73840;
+}
+
+.filter__special--4 {
+  background-color: #d73840;
+}
+
+/*# sourceMappingURL=style.css.map */

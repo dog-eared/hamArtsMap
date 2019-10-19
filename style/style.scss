@@ -1,0 +1,78 @@
+$font-titles: 'Cinzel', 'Times New Roman', serif;
+$font-content: 'Roboto', 'Arial', sans-serif;
+
+$color-body: #f66;
+$color-main: #feffe4;
+$color-font: #011;
+
+$special-1: #8a318c;
+$special-2: #75ab79;
+$special-3: #4d938e;
+$special-4: #d73840;
+
+$specials: $special-1, $special-2, $special-3, $special-4;
+
+body {
+    font-family: $font-content;
+    color: $color-font;
+    overflow-x: hidden !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-titles;
+}
+
+#map {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right:0px;
+    bottom:0px;
+    z-index: -100;
+}
+
+.map__ui {
+    background-color: $color-main;
+}
+
+.splash__container {
+    min-width: 300px;
+    width: 1280px;
+    max-width: 90vw;
+    max-height: 90vh;
+    margin: auto;
+
+    input[type='text'] {
+        width: 60%;
+    }
+
+}
+
+.recent__images__container {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+
+    .top {
+        top: 0px;
+    }
+
+    .bottom {
+        bottom: 0px;
+    }
+}
+
+.recent__images__img {
+    float: left;
+}
+
+@for $i from 1 through 4 {
+    .bg__special--#{$i} {
+        background-color: nth($specials, $i);
+    }
+
+    .filter__special--#{$i} {
+        background-color: nth($specials, $i);
+    }
+
+}
