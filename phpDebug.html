@@ -1,0 +1,85 @@
+<html>
+    <form action="locales.php" method="POST">
+        <fieldset>
+            <legend>Locales</legend>
+            <label for="searchTerm"></label>
+            <input id="searchTerm" name="searchTerm" type="text" />
+            <ul>
+                <li>
+                    <label for="filterMuseums">Museums</label>
+                    <input type="checkbox" name="filterMuseums" id="filterMuseums"  />
+                </li>
+                <li>
+                    <label for="filterMonuments">Monuments</label>
+                    <input type="checkbox" name="filterMonuments" id="filterMonuments"  />
+                </li>
+                <li>
+                    <label for="filterArt">Art</label>
+                    <input type="checkbox" name="filterArt" id="filterArt"  />
+                </li>
+            </ul>
+            
+            <button type="submit">Go</button>
+        </fieldset>
+    </form> 
+
+    <br/><br/>
+    <h1>Viewing</h1>
+    <form action="reviews.php" method="POST">
+        <fieldset>
+            <legend>Location Reviews</legend>
+            <label for="reviewId">Location ID</label>
+            <input type="number" name="reviewId" id="reviewId" />
+            <button type="submit">Go</button>
+            <input type="hidden" name="reviewAction" value="view" />
+        </fieldset>
+    </form>
+
+    <form action="images.php" method="POST">
+        <fieldset>
+            <legend>Location Images</legend>
+            <label for="imageId">Location ID</label>
+            <input type="number" name="imageId" id="imageId" />
+            <button type="submit">Go</button>
+            <input type="hidden" name="imageAction" value="view" />
+        </fieldset>
+    </form>
+
+    <br />
+    <br />
+    <br />
+
+    <form action="reviews.php" method="POST">
+        <fieldset>
+            <legend>Post Review</legend>
+            <label for="authorName">Name</label>
+            <input type="text" name="authorName" />
+            <label for="authorEmail">Email</label>
+            <input type="email" name="authorEmail" />
+            <label for="localeId">Locale ID</label>
+            <input type="number" min="0" max="62" name="localeId" />
+            <label for="rating">Rating</label>
+            <input type="number" min="1" max="10" name="rating" />
+            <textarea name="content"></textarea>
+            <button type="submit">Go</button>            
+            <input type="hidden" name="reviewAction" value="add" />
+        </fieldset>
+    </form>
+
+    <form action="images.php" method="POST">
+            <fieldset>
+                <legend>Post Image</legend>
+                <label for="authorName">Name</label>
+                <input type="text" name="authorName" />
+                <label for="localeId">Locale ID</label>
+                <input type="number" min="0" max="62" name="localeId" />
+                <label for="url">URL</label>
+                <input type="text" name="url" />
+                <button type="submit">Go</button>            
+                <input type="hidden" name="imageAction" value="add" />
+            </fieldset>
+        </form>
+
+
+
+</html>

@@ -3,42 +3,314 @@
     <meta charset="utf-8" />
     <title>Hamilton Arts Map</title>
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="style/style.css" />
-    <link href="https://fonts.googleapis.com/css?family=Cinzel|Roboto:500&display=swap" rel="stylesheet">
-
-    <script type='text/javascript' src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Cinzel|Roboto:400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=initApp&key=AsFbvK5rycmcVWN5vZDHMqwfWCFLQE3YekuZo8o6l5ZKL5aU3nB-fDQnvsZmUud1'></script>
     <script type='text/javascript' src="scripts/main.js"></script>
 </head>
 
 <body>
+    <header class="top slide__left">
+        <div class="recent__images--container top">
+            <div class="recent__images">
+                <img class="recent__images__img" data-locale="54" src="images/DundurnCastle1.jpg" />
+                <img class="recent__images__img" data-locale="55" src="images/WarplaneMuseum.jpg" />
+                <img class="recent__images__img" data-locale="54" src="images/DundurnCastle1.jpg" />
+                <img class="recent__images__img" data-locale="55" src="images/WarplaneMuseum.jpg" />
+                <img class="recent__images__img" data-locale="54" src="images/DundurnCastle1.jpg" />
+                <img class="recent__images__img" data-locale="55" src="images/WarplaneMuseum.jpg" />
+                <img class="recent__images__img" data-locale="54" src="images/DundurnCastle1.jpg" />
+                <img class="recent__images__img" data-locale="55" src="images/WarplaneMuseum.jpg" />
+            </div>
+        </div>
+    </header>
+                
+
     <div id="map"></div>
 
-    <div class="recent__images--container top">
-        <div class="recent__images">
-            <img class="recent__images__img" src="https://lorempixel.com/600/200/city" />
-            <img class="recent__images__img" src="https://lorempixel.com/600/200/abstract" />
-            <img class="recent__images__img" src="https://lorempixel.com/600/200/animals" />
-            <img class="recent__images__img" src="https://lorempixel.com/600/200/business" />
-        </div>
-    </div>
+    <div id="map__overlay">
 
-    <div class="splash__container">        
-        <div class="container-fluid map__ui">
-            <div class="row-fluid">
-                <input type="text" class="textbox mr-2" placeholder="Search" />
-                <button class="mr-2 btn btn-success">Go!</button>
-                <button class="btn btn-info">Settings</button>
-            </div>
-            <div class="row">
-                <ul>
-                    <li><a href="#">Highest Rated</a></li>
-                    <li><a href="#">Unreviewed</a></li>
-                    <li><a href="#">Nearby</a></li>
-                </ul>
-            </div>
+        <div class="splash__container">        
+            <div class="container-fluid map__ui">
+                <h1>HamArtsMap</h1>
+                <div class="row-fluid mb-2">
+                    <input type="text" class="js__searchbox textbox mr-2" placeholder="Search" />
+                    <button class="js__go mr-2 btn btn-success">Go!</button>
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="settings__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Settings
+                    </button>
+                    <div class="search__defaults">
+                        <div class="dropdown-menu" aria-labelledby="search__defaults">
+                            <a class="toggle__filter dropdown-item" data-filter="museums" href="#">
+                                <i class="material-icons">check_box</i>
+                                <span>Museums</span>
+                            </a>
+                            <a class="toggle__filter dropdown-item" data-filter="art" href="#">
+                                <i class="material-icons">check_box</i>
+                                <span>Public Art</span>
+                            </a>
+                            <a class="toggle__filter dropdown-item" data-filter="monuments" href="#">
+                                <i class="material-icons">check_box</i>
+                                <span>Monuments</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn-secondary search__highest">Highest Rated</button>
+                    <button type="button" class="btn-secondary search__unreviewed">Unreviewed</button>
+                    <button type="button" class="btn-secondary search__nearby">Nearby</button>
+                </div>
+                </div>
             </div>
         </div>
-    </div>
+
+        <button id="js__show-ui" type="button" class="hide__ui btn btn-info d-none">Show Controls</button>
+
+        <div class="map__ui results__container overflow-auto d-none">
+            <button id="js__hide-ui" type="button" class="hide__ui btn btn-info" aria-label="View Map">
+                View Map
+            </button>
+            <button id="js__results--close" type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h3>Search Term</h3>
+            <div class="results__controls d-none d-md-block d-lg-block d-xl-block">
+                <div class="row-fluid">
+                    <input type="text" class="js__searchbox textbox mr-2" placeholder="Search" />
+                    <button class="js__go mr-2 btn btn-success">Go!</button>
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="results__settings__dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Settings
+                    </button>
+                    <div class="search__results__defaults">
+                            <div class="dropdown-menu" aria-labelledby="search__results__defaults">
+                                <a class="toggle__filter dropdown-item" data-filter="museums" href="#">
+                                    <i class="material-icons">check_box</i>
+                                    <span>Museums</span>
+                                </a>
+                                <a class="toggle__filter dropdown-item" data-filter="art" href="#">
+                                    <i class="material-icons">check_box</i>
+                                    <span>Public Art</span>
+                                </a>
+                                <a class="toggle__filter dropdown-item" data-filter="monuments" href="#">
+                                    <i class="material-icons">check_box</i>
+                                    <span>Monuments</span>
+                                </a>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+
+            <ul class="results__list list-unstyled mt-4">
+
+            </ul>
+        </div>
+
+        <div class="modal fade location__details" data-location-details-id="1" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Location Name</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="rating location__rating" aria-label="3/5">
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star</i>
+                            <i class="material-icons">star_border</i>
+                            <i class="material-icons">star_border</i>
+                        </div>
+                    <div class="container">	
+                        <ul class="nav nav-pills justify-content-around mb-4">
+                            <li class="active">
+                                <a href="#one" class="details__blurb" data-toggle="tab">Blurb</a>
+                            </li>
+                            <li>
+                                <a href="#two" class="details__reviews" data-toggle="tab">Reviews</a>
+                            </li>
+                            <li>
+                                <a href="#three"class="details__images"  data-toggle="tab">Images</a>
+                            </li>
+                        </ul>                
+                        <div class="tab-content clearfix">
+                            <div class="tab-pane active" id="one">
+                                <p class="location__blurb"></p>
+                            </div>
+                            <div class="tab-pane" id="two">
+                                <ul class="location__reviews"></p>
+                            </div>
+                            <div class="tab-pane" id="three">
+                                <ul class="location__images list-unstyled"></p>    
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary js__post__review">Post Review</button>
+                        <button type="button" class="btn btn-primary js__post__image">Post Image</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="post__review" tabindex="-1" role="dialog" aria-labelledby="post__review__label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="post__review__label">Post Review</h5>
+                        <button type="button" class="close js__close__modal--2nd" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="post__review--form">
+                        <div class="modal-body">
+                            <ul class="list-unstyled post__controls">
+                                <li class="form-group row">
+                                    <label class="col-2" for="authorName">Name</label>
+                                    <input class="col-8" id="post__review--author" type="text" name="authorName" />
+                                </li>
+                                <li  class="form-group row">
+                                    <label class="col-2" for="authorEmail">Email</label>
+                                    <input class="col-8" id="post__review--email" type="email" name="authorEmail" />
+                            </li>
+                                <li  class="form-group row">
+                                    <label class="col-2" for="rating">Rating</label>
+                                    <input class="col-8" id="post__review--rating" type="number" min="1" max="5" name="rating" />
+                                </li>
+                                <li>
+                                    <label for="content">Review Content</label>
+                                    <textarea maxlength="1000" class="w-100" id="post__review--content" name="content"></textarea>
+                                </li>
+                            </ul>
+                            <input type="hidden" value="" class="locale__id" name="localeId" />
+                            <input type="hidden" name="reviewAction" value="add" id="js__post--review" />
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary js__close__modal--2nd" data-dismiss="modal">Close</button>
+                            <button type="button" class="js__submit--review btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="post__image" tabindex="-1" role="dialog" aria-labelledby="post__image__label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="post__review__label">Post Image</h5>
+                        <button type="button" class="close js__close__modal--2nd" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                        <div class="modal-body">
+                            <form id="post__image--form">
+                                <ul class="list-unstyled post__controls">
+                                    <li>
+                                        <label for="authorName">Name</label>
+                                        <input type="text" id="post__image--author" name="authorName" />
+                                    </li>
+                                    <li>
+                                        <label for="url">URL</label>
+                                        <input type="text" id="post__image--url" name="url" />
+                                    </li>
+
+                                </ul>
+                            </form>
+                            <input type="hidden" value="" class="locale__id" name="localeId" id="js__post--image" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary js__close__modal--2nd" data-dismiss="modal">Close</button>
+                            <button type="button" class="js__submit--image btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    
+        <div class="alert alert-warning alert-dismissible fade submit__alert" role="alert">
+            <p>Something went wrong!!</p>
+            <button type="button" class="close js__alert--close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        
+        <div class="alert alert-success alert-dismissible fade submit__success" role="alert">
+            <p>Success</p>
+            <button type="button" class="close js__success--close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <footer class="bottom slide__right">
+            <div class="recent__images--container top">
+                <div class="recent__images">
+                    <img class="recent__images__img" data-locale="55"  src="images/WarplaneMuseum.jpg" />
+                    <img class="recent__images__img" data-locale="54" src="images/DundurnCastle1.jpg" />
+                    <img class="recent__images__img" data-locale="55" src="images/WarplaneMuseum.jpg" />
+                    <img class="recent__images__img" data-locale="54" src="images/DundurnCastle1.jpg" />
+                    <img class="recent__images__img" data-locale="55" src="images/WarplaneMuseum.jpg" />
+                    <img class="recent__images__img" data-locale="54" src="images/DundurnCastle1.jpg" />
+                    <img class="recent__images__img" data-locale="55" src="images/WarplaneMuseum.jpg" />
+                    <img class="recent__images__img" data-locale="54" src="images/DundurnCastle1.jpg" />
+                </div>
+            </div>
+        </footer>
+        
+        <template>
+            <li class="card result__item">
+                <div class="card-body">
+                    <h5 class="card-title result__title">
+                        <a href="#">Location Name</a>
+                    </h5>
+                    <p class="card-text result__blurb">
+                        Blurb
+                    </p>
+
+                </div>
+            </li>
+        </template>
+
+        <template>
+            <li class="card review__item">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Author: <span class="review__author"></span>
+                    </h5>
+                    <h6>Posted: <span class="review__date">Date</span></h6>
+                    <p>Rating: <span class="review__rating">Rating</span></p>
+                    <p class="card-text review__content">
+                        Blurb
+                    </p>
+                </div>
+            </li>
+        </template>
+
+        <template>
+            <li class="card image__item">
+                <div class="card-body">
+                    <figure>
+                        <img class="image__img" src="" />
+                        <figcaption class="image__caption">
+                            Caption
+                        </figcaption>
+                    </figure>
+                </div>
+            </li>
+        </template>
+
 </body>
