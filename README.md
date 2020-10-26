@@ -1,6 +1,6 @@
 # HamArtsMap
 
-### [Watch a demonstration.](https://www.youtube.com/watch?v=lCThe2NPr0I) Higher framerate (ie more than 1 per 3 seconds) version coming eventually!
+### [Watch a demonstration.](https://www.youtube.com/watch?v=lCThe2NPr0I) Please excuse the low frame-rate -- this was done with free tools on a backup laptop. 
 
-![Screenshot of HamArtsMap](https://emulrooney.github.io/content/projects/project-HamArtsMap.png)
+![Screenshot of HamArtsMap](https://emulrooney.github.io/images/project-HamArtsMap.png)
 
